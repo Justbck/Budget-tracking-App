@@ -64,6 +64,22 @@ class ExpencesViewController: UITableViewController {
         
     }
     
+    //delete
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            context.delete(itemArray[indexPath.row])
+            itemArray.remove(at: indexPath.row)
+            saveItems()
+        }
+        
+        else if editingStyle == .insert {
+            print("x")
+            
+        }
+    }
+    
+
+    
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         

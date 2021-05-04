@@ -30,9 +30,45 @@ class CategoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         
         cell.textLabel?.text = categories[indexPath.row].name
-      
+        
         return cell
     }
+    
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+           
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
+            let vc = EditCategory()
+            vc.selectedRow = indexPath.row
+            vc.isEditingCategory = true
+            
+            let nav = UINavigationController(rootViewController: EditCategory())
+            nav.modalPresentationStyle = .fullScreen
+            nav.modalTransitionStyle = .coverVertical
+            
+            self.present(nav, animated: true, completion: nil)
+        }
+        
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            
+            
+            self.context.delete(self.categories[indexPath.row])
+            self.categories.remove(at: indexPath.row)
+            self.saveCategories()
+        }
+        
+        
+        return UISwipeActionsConfiguration(actions: [editAction,deleteAction])
+    }
+    
     
     
     //tableview delegate methods
@@ -70,8 +106,6 @@ class CategoryViewController: UITableViewController {
         var budgetTextField = UITextField()
         var notesTextField = UITextField()
     
-        
-        
         
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
@@ -135,3 +169,5 @@ class CategoryViewController: UITableViewController {
     
 
 }
+
+

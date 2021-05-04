@@ -14,6 +14,7 @@
 		83A4AD33263D866E005DE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD31263D866E005DE642 /* Main.storyboard */; };
 		83A4AD35263D866F005DE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD34263D866F005DE642 /* Assets.xcassets */; };
 		83A4AD38263D866F005DE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD36263D866F005DE642 /* LaunchScreen.storyboard */; };
+		83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C7A2641DB8100825AD4 /* EditCategory.swift */; };
 		83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83F19219263F1C970008658A /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		83A4AD34263D866F005DE642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83A4AD37263D866F005DE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83A4AD39263D866F005DE642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83EF4C7A2641DB8100825AD4 /* EditCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategory.swift; sourceTree = "<group>"; };
 		83F1921A263F1C970008658A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +56,7 @@
 			children = (
 				834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */,
 				83A4AD2F263D866E005DE642 /* ExpencesViewController.swift */,
+				83EF4C7A2641DB8100825AD4 /* EditCategory.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */,
 				83A4AD30263D866E005DE642 /* ExpencesViewController.swift in Sources */,
 				83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */,
+				83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */,
 				83A4AD2E263D866E005DE642 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
