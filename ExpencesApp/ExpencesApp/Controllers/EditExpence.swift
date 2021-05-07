@@ -1,25 +1,26 @@
 //
-//  NewCategory.swift
+//  EditExpence.swift
 //  ExpencesApp
 //
-//  Created by Justyna Bucko on 04/05/2021.
+//  Created by Justyna Bucko on 05/05/2021.
 //
 
 import Foundation
+import Foundation
 import UIKit
 
-class EditCategory: UITableViewController {
+class EditExpence: UITableViewController {
     
     let textFieldCellID = "textFieldCellID"
-    let placeholders = ["Name", "Budget", "Notes"]
+    let placeholders = ["Amount", "due"]
     
     var selectedRow: Int?
     
     var name : String = ""
     var budget: String = ""
-    var notes: String = ""
+
     
-    var isEditingCategory: Bool = false
+    var isEditingExpence: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,7 @@ class EditCategory: UITableViewController {
     
 }
 
-extension EditCategory {
+extension EditExpence {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

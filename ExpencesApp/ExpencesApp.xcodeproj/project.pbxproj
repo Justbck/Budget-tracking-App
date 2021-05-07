@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832282642642D7B500DD0D6A /* EditExpence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282632642D7B500DD0D6A /* EditExpence.swift */; };
+		832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282662642DDCE00DD0D6A /* AddCategory.swift */; };
+		834099D32643D8F100529981 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 834099D22643D8F100529981 /* SwiftUICharts */; };
 		834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */; };
 		83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AD2B263D866E005DE642 /* AppDelegate.swift */; };
 		83A4AD2E263D866E005DE642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AD2D263D866E005DE642 /* SceneDelegate.swift */; };
@@ -15,10 +18,14 @@
 		83A4AD35263D866F005DE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD34263D866F005DE642 /* Assets.xcassets */; };
 		83A4AD38263D866F005DE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD36263D866F005DE642 /* LaunchScreen.storyboard */; };
 		83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C7A2641DB8100825AD4 /* EditCategory.swift */; };
+		83EF4C7F2641F14600825AD4 /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C7E2641F14600825AD4 /* TextfieldCell.swift */; };
+		83EF719F2642943D007074CE /* TitleSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF719E2642943D007074CE /* TitleSubCell.swift */; };
 		83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83F19219263F1C970008658A /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		832282632642D7B500DD0D6A /* EditExpence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpence.swift; sourceTree = "<group>"; };
+		832282662642DDCE00DD0D6A /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
 		834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		83A4AD28263D866E005DE642 /* ExpencesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpencesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A4AD2B263D866E005DE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +36,8 @@
 		83A4AD37263D866F005DE642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83A4AD39263D866F005DE642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83EF4C7A2641DB8100825AD4 /* EditCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategory.swift; sourceTree = "<group>"; };
+		83EF4C7E2641F14600825AD4 /* TextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldCell.swift; sourceTree = "<group>"; };
+		83EF719E2642943D007074CE /* TitleSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubCell.swift; sourceTree = "<group>"; };
 		83F1921A263F1C970008658A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834099D32643D8F100529981 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +67,8 @@
 				834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */,
 				83A4AD2F263D866E005DE642 /* ExpencesViewController.swift */,
 				83EF4C7A2641DB8100825AD4 /* EditCategory.swift */,
+				832282632642D7B500DD0D6A /* EditExpence.swift */,
+				832282662642DDCE00DD0D6A /* AddCategory.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -104,8 +116,18 @@
 				8334D4F5263EF91D005D2040 /* Views */,
 				8334D4F6263EF93C005D2040 /* Supporting Files */,
 				83A4AD39263D866F005DE642 /* Info.plist */,
+				83EF4C812641F17F00825AD4 /* Cells */,
 			);
 			path = ExpencesApp;
+			sourceTree = "<group>";
+		};
+		83EF4C812641F17F00825AD4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				83EF4C7E2641F14600825AD4 /* TextfieldCell.swift */,
+				83EF719E2642943D007074CE /* TitleSubCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +146,9 @@
 			dependencies = (
 			);
 			name = ExpencesApp;
+			packageProductDependencies = (
+				834099D22643D8F100529981 /* SwiftUICharts */,
+			);
 			productName = ExpencesApp;
 			productReference = 83A4AD28263D866E005DE642 /* ExpencesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +176,9 @@
 				Base,
 			);
 			mainGroup = 83A4AD1F263D866E005DE642;
+			packageReferences = (
+				834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 83A4AD29263D866E005DE642 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -178,8 +206,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83EF4C7F2641F14600825AD4 /* TextfieldCell.swift in Sources */,
+				832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */,
+				83EF719F2642943D007074CE /* TitleSubCell.swift in Sources */,
 				834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */,
 				83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */,
+				832282642642D7B500DD0D6A /* EditExpence.swift in Sources */,
 				83A4AD30263D866E005DE642 /* ExpencesViewController.swift in Sources */,
 				83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */,
 				83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */,
@@ -383,6 +415,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		834099D22643D8F100529981 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		83F19219263F1C970008658A /* DataModel.xcdatamodeld */ = {

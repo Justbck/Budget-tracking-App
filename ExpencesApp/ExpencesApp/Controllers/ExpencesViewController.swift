@@ -7,8 +7,35 @@
 
 import UIKit
 import CoreData
+import SwiftUICharts
+
 
 class ExpencesViewController: UITableViewController {
+    
+    
+    @IBOutlet weak var expenceLabel: UILabel!
+    @IBOutlet var blurView: UIVisualEffectView!
+    @IBOutlet var popoverView: UIView!
+    
+    
+    @IBAction func showAction(_ sender: UIBarButtonItem) {
+        expenceLabel.text = "Add Expense"
+        animateIn(desiredView: blurView)
+        animateIn(desiredView: popoverView)
+    }
+    
+    
+    @IBAction func saveAction(_ sender: UIButton) {
+    }
+    
+    @IBAction func cancelAction(_ sender: UIButton) {
+        animateOut(desiredView: popoverView)
+        animateOut(desiredView: blurView)
+    }
+    
+    
+    
+    
     
     var itemArray = [Item]()
     var selectedCategory : Category? {
@@ -25,9 +52,34 @@ class ExpencesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        blurView.bounds = self.view.bounds
+        popoverView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width * 0.4, height: self.view.bounds.height * 0.4 )
     }
     
-   
+    func animateIn(desiredView: UIView) {
+        let backgroundView = self.view!
+        backgroundView.addSubview(desiredView)
+        
+        desiredView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+        desiredView.alpha = 0
+        desiredView.center = backgroundView.center
+        
+        
+        UIView.animate(withDuration: 0.3) {
+            desiredView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            desiredView.alpha = 1
+        }
+    }
+    
+    func animateOut(desiredView: UIView) {
+        UIView.animate(withDuration: 0.3) {
+            desiredView.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            desiredView.alpha = 0
+        }
+        desiredView.removeFromSuperview()
+    }
+    
+    
     //tableview datasource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -46,6 +98,52 @@ class ExpencesViewController: UITableViewController {
         cell.accessoryType = item.due ? .checkmark : .none
         
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            
+            self.context.delete(self.itemArray[indexPath.row])
+            self.itemArray.remove(at: indexPath.row)
+            self.saveItems()
+        }
+        
+        
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
+
+            /*
+            let vc = EditExpence()
+            
+            
+            vc.selectedRow = indexPath.row
+            vc.isEditingExpence = true
+            
+            let nav = UINavigationController(rootViewController: EditCategory())
+            nav.modalPresentationStyle = .fullScreen
+            nav.modalTransitionStyle = .coverVertical
+            
+            self.present(nav, animated: true, completion: nil)
+            
+            */
+            self.expenceLabel.text = "Edit Expense"
+            self.animateIn(desiredView: self.blurView)
+            self.animateIn(desiredView: self.popoverView)
+            
+            
+        }
+        
+        
+    
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+        
+        
+        
     }
     
     
@@ -78,7 +176,28 @@ class ExpencesViewController: UITableViewController {
         }
     }
     
+    
+    
+    //
+    
 
+    //sort expences
+    
+    @IBAction func sortButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+    
+        request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: true)]
+        
+        loadItems(with: request)
+        tableView.reloadData()
+        
+        
+        
+    }
+    
+    
+    
     
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -159,7 +278,7 @@ extension ExpencesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request : NSFetchRequest<Item> = Item.fetchRequest()
     
-        let predicate = NSPredicate(format: "amount CONTAINS %@", searchBar.text!)
+        let predicate = NSPredicate(format: "amount CONTAINS %@", searchBar.text!.lowercased())
         request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: true)]
         
         loadItems(with: request, predicate: predicate)
@@ -176,3 +295,4 @@ extension ExpencesViewController: UISearchBarDelegate {
         }
     }
 }
+

@@ -1,14 +1,13 @@
 //
-//  NewCategory.swift
+//  AddCategory.swift
 //  ExpencesApp
 //
-//  Created by Justyna Bucko on 04/05/2021.
+//  Created by Justyna Bucko on 05/05/2021.
 //
 
-import Foundation
 import UIKit
 
-class EditCategory: UITableViewController {
+class AddCategory: UITableViewController {
     
     let textFieldCellID = "textFieldCellID"
     let placeholders = ["Name", "Budget", "Notes"]
@@ -28,7 +27,7 @@ class EditCategory: UITableViewController {
     }
     
     private func setupNavBar(){
-        self.title = "Edit Category"
+        self.title = "Add Category"
         
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonPressed))
         navigationItem.leftBarButtonItem = cancelButton
@@ -52,7 +51,7 @@ class EditCategory: UITableViewController {
     
 }
 
-extension EditCategory {
+extension AddCategory {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
