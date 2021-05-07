@@ -210,16 +210,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Expence" id="1et-oH-lPp">
                         <rightBarButtonItems>
-                            <barButtonItem title="button" id="s5g-hf-RM3">
+                            <barButtonItem systemItem="add" id="s5g-hf-RM3">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="showAction:" destination="5i6-rc-lV4" id="y2e-Ge-G6F"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="add" id="MTR-pm-1uK">
-                                <color key="tintColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <action selector="addButtonPressed:" destination="5i6-rc-lV4" id="QJ9-SK-2TJ"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="arrow.up.arrow.down" catalog="system" id="gaa-gw-kRN">
@@ -231,9 +225,14 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addToCalendar" destination="CN2-8Z-AlC" id="4zW-t7-362"/>
+                        <outlet property="amountText" destination="WYo-3m-7Qu" id="ujk-Fd-Bi9"/>
                         <outlet property="blurView" destination="MbE-jb-OdL" id="6c3-tR-8cW"/>
                         <outlet property="expenceLabel" destination="Q8j-W8-rPv" id="G0M-V9-M5z"/>
+                        <outlet property="notesText" destination="ZOG-h2-vCa" id="fCX-uM-98j"/>
+                        <outlet property="occurance" destination="qXQ-3e-kvO" id="LNv-ac-bQx"/>
                         <outlet property="popoverView" destination="xI4-gz-bA8" id="UBj-MM-nVf"/>
+                        <outlet property="selectedDate" destination="lNn-rJ-QgM" id="vam-Ts-Tnd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zlo-oA-kff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -306,12 +305,6 @@
                             <rect key="frame" x="197" y="265" width="49" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </switch>
-                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="lNn-rJ-QgM">
-                            <rect key="frame" x="56" y="129" width="332" height="162"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" systemColor="systemGray4Color"/>
-                            <color key="tintColor" systemColor="labelColor"/>
-                        </datePicker>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qXQ-3e-kvO">
                             <rect key="frame" x="34" y="321" width="265" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -321,7 +314,14 @@
                                 <segment title="Weekly"/>
                                 <segment title="Monthly"/>
                             </segments>
+                            <color key="selectedSegmentTintColor" systemColor="systemGray2Color"/>
                         </segmentedControl>
+                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="lNn-rJ-QgM">
+                            <rect key="frame" x="54" y="164" width="332" height="70"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemGray4Color"/>
+                            <color key="tintColor" systemColor="labelColor"/>
+                        </datePicker>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="D8H-UO-A93"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -363,6 +363,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

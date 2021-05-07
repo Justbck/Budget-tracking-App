@@ -14,18 +14,66 @@ class ExpencesViewController: UITableViewController {
     
     
     @IBOutlet weak var expenceLabel: UILabel!
+    
+    @IBOutlet weak var amountText: UITextField!
+    @IBOutlet weak var selectedDate: UIDatePicker!
+    @IBOutlet weak var notesText: UITextField!
+    @IBOutlet weak var addToCalendar: UISwitch!
+    @IBOutlet weak var occurance: UISegmentedControl!
+    
+    
+    
+    
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var popoverView: UIView!
+  
+   
+    var isEditingExp: Bool!
+    var selectedExpRow :Int!
+    
     
     
     @IBAction func showAction(_ sender: UIBarButtonItem) {
+        isEditingExp = false
         expenceLabel.text = "Add Expense"
         animateIn(desiredView: blurView)
         animateIn(desiredView: popoverView)
+        
+        
     }
     
     
     @IBAction func saveAction(_ sender: UIButton) {
+        
+        let newItem = Item(context: self.context)
+        newItem.amount = amountText.text!
+        newItem.notes = notesText.text!
+        newItem.date = selectedDate.date
+        
+        if addToCalendar.isOn == true {
+            newItem.added = true
+        } else {
+            newItem.added = false
+        }
+
+        newItem.due = false
+        newItem.parentCategory = self.selectedCategory
+
+        if isEditingExp == false {
+            self.itemArray.append(newItem)
+            self.saveItems()
+            animateOut(desiredView: popoverView)
+            animateOut(desiredView: blurView)
+            
+        } else {
+            
+            self.itemArray.insert(newItem, at: selectedExpRow + 1)
+            self.context.delete(self.itemArray[selectedExpRow])
+            self.itemArray.remove(at: selectedExpRow)
+            self.saveItems()
+            animateOut(desiredView: popoverView)
+            animateOut(desiredView: blurView)
+        }
     }
     
     @IBAction func cancelAction(_ sender: UIButton) {
@@ -90,8 +138,6 @@ class ExpencesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell", for: indexPath)
         
         let item = itemArray[indexPath.row]
-        
-        
         cell.textLabel?.text = item.amount
         
         //ternary operator
@@ -116,34 +162,25 @@ class ExpencesViewController: UITableViewController {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
 
-            /*
-            let vc = EditExpence()
             
-            
-            vc.selectedRow = indexPath.row
-            vc.isEditingExpence = true
-            
-            let nav = UINavigationController(rootViewController: EditCategory())
-            nav.modalPresentationStyle = .fullScreen
-            nav.modalTransitionStyle = .coverVertical
-            
-            self.present(nav, animated: true, completion: nil)
-            
-            */
             self.expenceLabel.text = "Edit Expense"
             self.animateIn(desiredView: self.blurView)
             self.animateIn(desiredView: self.popoverView)
             
+            self.amountText.text = self.itemArray[indexPath.row].amount
+            self.notesText.text = self.itemArray[indexPath.row].notes
+            //self.selectedDate.date = self.itemArray[indexPath.row].date
+            if self.itemArray[indexPath.row].added == true {
+                self.addToCalendar.isOn = true
+            } else {
+                self.addToCalendar.isOn = false
+            }
             
+            self.isEditingExp = true
+            self.selectedExpRow = indexPath.row
         }
         
-        
-    
-        
         return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
-        
-        
-        
     }
     
     
@@ -162,24 +199,7 @@ class ExpencesViewController: UITableViewController {
         
     }
     
-    //delete
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            context.delete(itemArray[indexPath.row])
-            itemArray.remove(at: indexPath.row)
-            saveItems()
-        }
-        
-        else if editingStyle == .insert {
-            print("x")
-            
-        }
-    }
-    
-    
-    
-    //
-    
+
 
     //sort expences
     
@@ -200,42 +220,7 @@ class ExpencesViewController: UITableViewController {
     
     
     
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
-        var amountTextField = UITextField()
-
-        
-        let alert = UIAlertController(title: "Add Expence", message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            //what will happen
-            
-          
-            let newItem = Item(context: self.context)
-            newItem.amount = amountTextField.text!
-            newItem.due = false
-            newItem.parentCategory = self.selectedCategory
-            self.itemArray.append(newItem)
-            
-            self.saveItems()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    
-    
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Amount: "
-            amountTextField = alertTextField
-        }
-        
-        
-        alert.addAction(action)
-        alert.addAction(cancel)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
+   
     
     
     //model manipulation methods

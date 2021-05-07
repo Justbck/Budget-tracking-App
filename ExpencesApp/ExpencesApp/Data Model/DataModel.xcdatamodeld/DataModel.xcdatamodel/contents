@@ -9,8 +9,9 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="parentCategory" inverseEntity="Item"/>
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
+        <attribute name="added" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="amount" optional="YES" attributeType="String"/>
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="due" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="occurance" optional="YES" attributeType="String"/>
@@ -18,6 +19,6 @@
     </entity>
     <elements>
         <element name="Category" positionX="4297" positionY="150" width="128" height="133"/>
-        <element name="Item" positionX="4503.5" positionY="152.5" width="128" height="133"/>
+        <element name="Item" positionX="4503.5" positionY="152.5" width="128" height="148"/>
     </elements>
 </model>
