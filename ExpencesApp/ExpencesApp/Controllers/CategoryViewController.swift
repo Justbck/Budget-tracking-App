@@ -11,8 +11,36 @@ import CoreData
 class CategoryViewController: UITableViewController {
     
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    @IBOutlet weak var categoryName: UITextField!
+    @IBOutlet weak var categoryBudget: UITextField!
+    @IBOutlet weak var categoryNotes: UITextField!
+    
+    
+    let screenSize: CGRect = UIScreen.main.bounds
+ 
+    
+    var colorPicker = UIColorPickerViewController()
+    var selectedColor = UIColor.systemTeal
+    
+    var isEditingCat: Bool!
+    var selectedCatRow :Int!
+    
+  
+    
+    @IBAction func openPickerView(_ sender: UIButton) {
+        colorPicker.supportsAlpha = true
+        colorPicker.selectedColor = selectedColor
+        present(colorPicker, animated: true)
+    }
+    
+    
     
     @IBAction func showPopover(_ sender: UIBarButtonItem) {
+        isEditingCat = false
+        categoryLabel.text = "Add Category"
+        categoryName.text = ""
         animateIn(desiredView: blurView)
         animateIn(desiredView: popoverView)
     }
@@ -24,6 +52,31 @@ class CategoryViewController: UITableViewController {
     }
     
     @IBAction func saveAction(_ sender: UIButton) {
+        
+        let newCategory =  Category(context: self.context)
+        newCategory.name = categoryName.text!
+        newCategory.budget = categoryBudget.text!
+        newCategory.notes = categoryNotes.text!
+        
+        if isEditingCat == false {
+            self.categories.append(newCategory)
+            self.saveCategories()
+            animateOut(desiredView: popoverView)
+            animateOut(desiredView: blurView)
+            
+        } else {
+            
+            self.categories.insert(newCategory, at: selectedCatRow + 1)
+            self.context.delete(self.categories[selectedCatRow])
+            self.categories.remove(at: selectedCatRow)
+            self.saveCategories()
+            animateOut(desiredView: popoverView)
+            animateOut(desiredView: blurView)
+        }
+        
+        self.saveCategories()
+        
+        
     }
     
     @IBOutlet var blurView: UIVisualEffectView!
@@ -70,15 +123,19 @@ class CategoryViewController: UITableViewController {
         return categories.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        
-        
-        cell.textLabel?.text = categories[indexPath.row].name
-        
-                
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTVC
+        cell.catNameLabel.text = self.categories[indexPath.row].name
+        cell.catBudgetLabel.text = self.categories[indexPath.row].budget
+        cell.categoryView.frame.size.width = screenSize.width
+
         return cell
+        
     }
     
 
@@ -96,65 +153,20 @@ class CategoryViewController: UITableViewController {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
             
-            /*let vc = EditCategory()
+            self.categoryLabel.text = "Edit Category"
+            self.animateIn(desiredView: self.blurView)
+            self.animateIn(desiredView: self.popoverView)
             
-            vc.selectedRow = indexPath.row
-            vc.isEditingCategory = true
-            
-            let nav = UINavigationController(rootViewController: EditCategory())
-            nav.modalPresentationStyle = .fullScreen
-            nav.modalTransitionStyle = .coverVertical
-            
-            self.present(nav, animated: true, completion: nil)
-            */
-            
-            var nameTextField = UITextField()
-            var budgetTextField = UITextField()
-            var notesTextField = UITextField()
+            self.categoryName.text = self.categories[indexPath.row].name
+            self.categoryBudget.text = self.categories[indexPath.row].budget
+            self.categoryNotes.text = self.categories[indexPath.row].notes
+ 
+           
+            self.isEditingCat = true
+            self.selectedCatRow = indexPath.row
             
             
-        
-            
-            let alert = UIAlertController(title: "Edit Category", message: "", preferredStyle: .alert)
-            
-            let action = UIAlertAction(title: "Add", style: .default) { (action) in
-                let newCategory =  Category(context: self.context)
-                newCategory.name = nameTextField.text!
-                newCategory.budget = budgetTextField.text!
-                newCategory.notes = notesTextField.text!
-                
-                
-                self.categories.insert(newCategory, at: indexPath.row+1)
-                self.context.delete(self.categories[indexPath.row])
-                self.categories.remove(at: indexPath.row)
-                self.saveCategories()
-            }
-            
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-          
-            
-            
-            alert.addAction(action)
-            alert.addAction(cancel)
-         
-            
-            alert.addTextField { (field) in
-                nameTextField = field
-                nameTextField.placeholder = "Category name: "
-            }
-            
-            alert.addTextField { (budgetField) in
-                budgetTextField = budgetField
-                budgetTextField.placeholder = "Budget £:"
-            }
-            
-            alert.addTextField { (notesField) in
-                notesTextField = notesField
-                notesTextField.placeholder = "Notes: "
-            }
-
-            self.present(alert, animated: true, completion: nil)
+           
         }
  
         return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
@@ -200,69 +212,8 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
          
     }
-    
-    
-    //
-    
 
-    
-    
-    //add new categories
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
-        var nameTextField = UITextField()
-        var budgetTextField = UITextField()
-        var notesTextField = UITextField()
-        
-        
-    
-        
-        let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            let newCategory =  Category(context: self.context)
-            newCategory.name = nameTextField.text!
-            newCategory.budget = budgetTextField.text!
-            newCategory.notes = notesTextField.text!
-            
-            self.categories.append(newCategory)
-            
-            self.saveCategories()
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-      
-        
-        
-        alert.addAction(action)
-        alert.addAction(cancel)
-     
-        
-        alert.addTextField { (field) in
-            nameTextField = field
-            nameTextField.placeholder = "Category name: "
-        }
-        
-        alert.addTextField { (budgetField) in
-            budgetTextField = budgetField
-            budgetTextField.placeholder = "Budget £:"
-        }
-        
-        alert.addTextField { (notesField) in
-            notesTextField = notesField
-            notesTextField.placeholder = "Notes: "
-        }
-        
-        
-        
-        
-        
-        present(alert, animated: true, completion: nil)
-
-        
-        
-    }
+   
     
     func loadCategories(with request: NSFetchRequest<Category> = Category.fetchRequest(), predicate : NSPredicate? = nil) {
         

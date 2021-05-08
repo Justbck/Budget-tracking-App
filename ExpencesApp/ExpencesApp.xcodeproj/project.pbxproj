@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830A753A264685C600C70154 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A7539264685C600C70154 /* CategoryTVC.swift */; };
 		832282642642D7B500DD0D6A /* EditExpence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282632642D7B500DD0D6A /* EditExpence.swift */; };
 		832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282662642DDCE00DD0D6A /* AddCategory.swift */; };
 		834099D32643D8F100529981 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 834099D22643D8F100529981 /* SwiftUICharts */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830A7539264685C600C70154 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
 		832282632642D7B500DD0D6A /* EditExpence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpence.swift; sourceTree = "<group>"; };
 		832282662642DDCE00DD0D6A /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
 		834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				83A4AD31263D866E005DE642 /* Main.storyboard */,
+				830A7539264685C600C70154 /* CategoryTVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				83EF4C7F2641F14600825AD4 /* TextfieldCell.swift in Sources */,
 				832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */,
 				83EF719F2642943D007074CE /* TitleSubCell.swift in Sources */,
+				830A753A264685C600C70154 /* CategoryTVC.swift in Sources */,
 				834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */,
 				83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */,
 				832282642642D7B500DD0D6A /* EditExpence.swift in Sources */,

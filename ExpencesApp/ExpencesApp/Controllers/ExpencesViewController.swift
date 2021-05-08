@@ -186,23 +186,14 @@ class ExpencesViewController: UITableViewController {
     
     //tableview delegate methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        //context.delete(itemArray[indexPath.row])
-        //itemArray.remove(at: indexPath.row)
-        
         itemArray[indexPath.row].due = !itemArray[indexPath.row].due
         saveItems()
-
- 
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
     
 
 
     //sort expences
-    
     @IBAction func sortButtonPressed(_ sender: UIBarButtonItem) {
         
         let request : NSFetchRequest<Item> = Item.fetchRequest()
@@ -211,20 +202,10 @@ class ExpencesViewController: UITableViewController {
         
         loadItems(with: request)
         tableView.reloadData()
-        
-        
-        
     }
     
-    
-    
-    
-    
-   
-    
-    
+
     //model manipulation methods
-    
     func saveItems(){
          do {
             try context.save()
