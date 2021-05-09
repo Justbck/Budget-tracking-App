@@ -11,6 +11,7 @@ import CoreData
 class CategoryViewController: UITableViewController {
     
     
+    @IBOutlet weak var categoryColor: UISegmentedControl!
     @IBOutlet weak var categoryLabel: UILabel!
     
     @IBOutlet weak var categoryName: UITextField!
@@ -30,7 +31,6 @@ class CategoryViewController: UITableViewController {
     @IBAction func openPickerView(_ sender: UIButton) {
         colorPicker.supportsAlpha = true
         colorPicker.selectedColor = selectedColor
-        
         present(colorPicker, animated: true)
         
     }
@@ -58,6 +58,10 @@ class CategoryViewController: UITableViewController {
         newCategory.name = categoryName.text!
         newCategory.budget = categoryBudget.text!
         newCategory.notes = categoryNotes.text!
+        let selectedCategoryColor = categoryColor.selectedSegmentIndex
+        newCategory.colour = categoryColor.titleForSegment(at:selectedCategoryColor)
+        
+       
         
 
         
@@ -145,7 +149,23 @@ class CategoryViewController: UITableViewController {
        
         cell.catNotesLabel.text = self.categories[indexPath.row].notes
         cell.categoryView.frame.size.width = screenSize.width * 0.95
-        cell.categoryView.backgroundColor = selectedColor
+        
+        if self.categories[indexPath.row].colour == "Green" {
+            cell.categoryView.backgroundColor = UIColor.init(hex: "c8e6c9")
+        } else if self.categories[indexPath.row].colour == "Black"{
+            cell.categoryView.backgroundColor = .lightGray
+        } else if self.categories[indexPath.row].colour == "Blue"{
+            cell.categoryView.backgroundColor = UIColor.init(hex: "b3e5fc")
+        } else if self.categories[indexPath.row].colour == "Yellow" {
+            cell.categoryView.backgroundColor = UIColor.init(hex: "ffffcf")
+        } else if self.categories[indexPath.row].colour == "Red" {
+            cell.categoryView.backgroundColor = UIColor.init(hex: "#ff867c")
+        } else {
+            cell.categoryView.backgroundColor = .white
+        }
+        
+        
+      
         
         return cell
         

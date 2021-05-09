@@ -95,6 +95,7 @@
                     <connections>
                         <outlet property="blurView" destination="tMh-ob-Ufl" id="BmK-mK-80q"/>
                         <outlet property="categoryBudget" destination="vuO-Ho-vXf" id="bPe-yY-4SH"/>
+                        <outlet property="categoryColor" destination="9Hx-U0-mXx" id="t2l-yc-EmR"/>
                         <outlet property="categoryLabel" destination="z2r-aM-bzv" id="wwi-Sc-06V"/>
                         <outlet property="categoryName" destination="xcw-PJ-jZz" id="3VZ-5y-4Ez"/>
                         <outlet property="categoryNotes" destination="ZuT-B8-dkD" id="ts7-bT-2Bc"/>
@@ -181,6 +182,18 @@
                                 <action selector="openPickerView:" destination="fZC-zI-Udu" eventType="touchUpInside" id="qdS-rg-5E9"/>
                             </connections>
                         </button>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Hx-U0-mXx">
+                            <rect key="frame" x="0.0" y="272" width="332" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="White"/>
+                                <segment title="Black"/>
+                                <segment title="Blue"/>
+                                <segment title="Yellow"/>
+                                <segment title="Red"/>
+                                <segment title="Green"/>
+                            </segments>
+                        </segmentedControl>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="CfL-VB-M0L"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -188,7 +201,7 @@
             </objects>
             <point key="canvasLocation" x="1289.84375" y="103.7109375"/>
         </scene>
-        <!--Expence-->
+        <!--Expences-->
         <scene sceneID="wpa-Ld-o6v">
             <objects>
                 <tableViewController id="5i6-rc-lV4" customClass="ExpencesViewController" customModule="ExpencesApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -270,7 +283,7 @@
                             <outlet property="delegate" destination="5i6-rc-lV4" id="p7p-1A-gic"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expence" id="1et-oH-lPp">
+                    <navigationItem key="navigationItem" title="Expences" id="1et-oH-lPp">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="s5g-hf-RM3">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -406,9 +419,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hLl-Gv-1BZ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.18865323827888272" green="0.46373056994818651" blue="0.23360807713811549" alpha="0.62323943661971826" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="26"/>
                             <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="26"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

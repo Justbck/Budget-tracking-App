@@ -49,12 +49,14 @@ class ExpencesViewController: UITableViewController {
     
     @IBAction func saveAction(_ sender: UIButton) {
         
+        let selectedSegment = occurance.selectedSegmentIndex
+        
         let newItem = Item(context: self.context)
         newItem.name = nameText.text!
         newItem.amount = amountText.text!
         newItem.notes = notesText.text!
         newItem.date = selectedDate.date
-        
+        newItem.occurance = occurance.titleForSegment(at:selectedSegment)
         
         
         
@@ -151,7 +153,15 @@ class ExpencesViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell") as! ExpenseTVC
         cell.expName.text = self.itemArray[indexPath.row].name
-        cell.expAmount.text = self.itemArray[indexPath.row].amount
+        
+        
+        let budget = self.itemArray[indexPath.row].amount! + "£"
+        if (self.itemArray[indexPath.row].amount!.isEmpty) {
+            cell.expAmount.text = "0 £"
+        } else{
+            cell.expAmount.text = budget
+        }
+        cell.expOccurance.text = self.itemArray[indexPath.row].occurance
         
         
         let dateFormatter = DateFormatter()
@@ -195,7 +205,9 @@ class ExpencesViewController: UITableViewController {
             self.nameText.text = self.itemArray[indexPath.row].name
             self.amountText.text = self.itemArray[indexPath.row].amount
             self.notesText.text = self.itemArray[indexPath.row].notes
+            
             //self.selectedDate.date = self.itemArray[indexPath.row].date
+            
             if self.itemArray[indexPath.row].added == true {
                 self.addToCalendar.isOn = true
             } else {
