@@ -73,9 +73,19 @@ class CategoryViewController: UITableViewController {
             
         } else {
             
-            self.categories.insert(newCategory, at: selectedCatRow + 1)
-            self.context.delete(self.categories[selectedCatRow])
-            self.categories.remove(at: selectedCatRow)
+            //self.categories.insert(newCategory, at: selectedCatRow + 1)
+            //self.context.delete(self.categories[selectedCatRow])
+            //self.categories.remove(at: selectedCatRow)
+            
+            self.categories[selectedCatRow].name =   categoryName.text!
+            self.categories[selectedCatRow].budget = categoryBudget.text!
+            let budgetDbl = (categoryBudget.text! as NSString).doubleValue
+            self.categories[selectedCatRow].budgetDbl = budgetDbl
+            self.categories[selectedCatRow].notes = categoryNotes.text
+            let selectedCategoryColor = categoryColor.selectedSegmentIndex
+            self.categories[selectedCatRow].colour = categoryColor.titleForSegment(at:selectedCategoryColor)
+            
+            
             self.saveCategories()
             animateOut(desiredView: popoverView)
             animateOut(desiredView: blurView)
@@ -195,9 +205,9 @@ class CategoryViewController: UITableViewController {
             
             self.categoryName.text = self.categories[indexPath.row].name
             let budget = self.categories[indexPath.row].budget
-            //let budgetString = String(format: "%f", budget)
             self.categoryBudget.text = budget
             self.categoryNotes.text = self.categories[indexPath.row].notes
+           
  
            
             self.isEditingCat = true
