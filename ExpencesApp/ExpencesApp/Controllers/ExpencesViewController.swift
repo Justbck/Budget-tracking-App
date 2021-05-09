@@ -38,7 +38,11 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
     
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var popoverView: UIView!
-  
+    
+    @IBOutlet var headerView: UIView!
+    
+    @IBOutlet weak var headerTitile: UILabel!
+    
    
     var isEditingExp: Bool!
     var selectedExpRow :Int!
@@ -181,10 +185,12 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
         blurView.bounds = self.view.bounds
         popoverView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width * 0.4, height: self.view.bounds.height * 0.4 )
         
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height * 0.3))
-        header.backgroundColor = .gray
+        headerView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width, height: self.view.bounds.height * 0.3)
         
-        tableView.tableHeaderView = header
+        headerTitile.text = selectedCategory?.name
+        
+        
+        tableView.tableHeaderView = headerView
        
     }
     

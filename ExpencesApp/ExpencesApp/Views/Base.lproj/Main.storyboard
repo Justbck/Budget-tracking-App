@@ -312,6 +312,8 @@
                         <outlet property="amountText" destination="WYo-3m-7Qu" id="ujk-Fd-Bi9"/>
                         <outlet property="blurView" destination="MbE-jb-OdL" id="6c3-tR-8cW"/>
                         <outlet property="expenceLabel" destination="Q8j-W8-rPv" id="G0M-V9-M5z"/>
+                        <outlet property="headerTitile" destination="RW5-QN-RRI" id="Ike-uS-Ei8"/>
+                        <outlet property="headerView" destination="7YF-3r-haR" id="2qE-cL-PHQ"/>
                         <outlet property="nameText" destination="btf-V2-jXo" id="DvC-9A-eBD"/>
                         <outlet property="notesText" destination="ZOG-h2-vCa" id="fCX-uM-98j"/>
                         <outlet property="occurance" destination="qXQ-3e-kvO" id="LNv-ac-bQx"/>
@@ -414,6 +416,21 @@
                         </textField>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="D8H-UO-A93"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" id="7YF-3r-haR">
+                    <rect key="frame" x="0.0" y="0.0" width="769" height="440"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW5-QN-RRI">
+                            <rect key="frame" x="161" y="20" width="473" height="51"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="MKx-1B-1mM"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
             </objects>
