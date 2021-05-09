@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		830A753A264685C600C70154 /* CategoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A7539264685C600C70154 /* CategoryTVC.swift */; };
+		831AB46B2647DA4500B01428 /* ExpenseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831AB46A2647DA4500B01428 /* ExpenseTVC.swift */; };
 		832282642642D7B500DD0D6A /* EditExpence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282632642D7B500DD0D6A /* EditExpence.swift */; };
 		832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282662642DDCE00DD0D6A /* AddCategory.swift */; };
 		834099D32643D8F100529981 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 834099D22643D8F100529981 /* SwiftUICharts */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		830A7539264685C600C70154 /* CategoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTVC.swift; sourceTree = "<group>"; };
+		831AB46A2647DA4500B01428 /* ExpenseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTVC.swift; sourceTree = "<group>"; };
 		832282632642D7B500DD0D6A /* EditExpence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpence.swift; sourceTree = "<group>"; };
 		832282662642DDCE00DD0D6A /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
 		834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				83A4AD31263D866E005DE642 /* Main.storyboard */,
 				830A7539264685C600C70154 /* CategoryTVC.swift */,
+				831AB46A2647DA4500B01428 /* ExpenseTVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */,
 				832282642642D7B500DD0D6A /* EditExpence.swift in Sources */,
 				83A4AD30263D866E005DE642 /* ExpencesViewController.swift in Sources */,
+				831AB46B2647DA4500B01428 /* ExpenseTVC.swift in Sources */,
 				83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */,
 				83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */,
 				83A4AD2E263D866E005DE642 /* SceneDelegate.swift in Sources */,

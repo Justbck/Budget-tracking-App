@@ -22,25 +22,26 @@ class CategoryViewController: UITableViewController {
  
     
     var colorPicker = UIColorPickerViewController()
-    var selectedColor = UIColor.systemTeal
+    var selectedColor =  UIColor.systemTeal
     
     var isEditingCat: Bool!
     var selectedCatRow :Int!
     
-  
-    
     @IBAction func openPickerView(_ sender: UIButton) {
         colorPicker.supportsAlpha = true
         colorPicker.selectedColor = selectedColor
+        
         present(colorPicker, animated: true)
+        
     }
-    
     
     
     @IBAction func showPopover(_ sender: UIBarButtonItem) {
         isEditingCat = false
         categoryLabel.text = "Add Category"
         categoryName.text = ""
+        categoryBudget.text = ""
+        categoryNotes.text = ""
         animateIn(desiredView: blurView)
         animateIn(desiredView: popoverView)
     }
@@ -57,6 +58,8 @@ class CategoryViewController: UITableViewController {
         newCategory.name = categoryName.text!
         newCategory.budget = categoryBudget.text!
         newCategory.notes = categoryNotes.text!
+        
+
         
         if isEditingCat == false {
             self.categories.append(newCategory)
@@ -89,6 +92,7 @@ class CategoryViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
+        colorPicker.delegate = self
         blurView.bounds = self.view.bounds
         popoverView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width * 0.4, height: self.view.bounds.height * 0.4 )
     }
@@ -132,8 +136,10 @@ class CategoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTVC
         cell.catNameLabel.text = self.categories[indexPath.row].name
         cell.catBudgetLabel.text = self.categories[indexPath.row].budget
-        cell.categoryView.frame.size.width = screenSize.width
-
+        cell.catNotesLabel.text = self.categories[indexPath.row].notes
+        cell.categoryView.frame.size.width = screenSize.width * 0.95
+        cell.categoryView.backgroundColor = selectedColor
+        
         return cell
         
     }
@@ -258,5 +264,40 @@ extension CategoryViewController: UISearchBarDelegate {
         }
     }
 }
+
+
+extension CategoryViewController: UIColorPickerViewControllerDelegate {
+    
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        selectedColor = viewController.selectedColor
+    }
+    
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        print("")
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

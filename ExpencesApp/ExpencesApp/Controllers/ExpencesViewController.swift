@@ -15,6 +15,7 @@ class ExpencesViewController: UITableViewController {
     
     @IBOutlet weak var expenceLabel: UILabel!
     
+    @IBOutlet weak var nameText: UITextField!
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var selectedDate: UIDatePicker!
     @IBOutlet weak var notesText: UITextField!
@@ -36,6 +37,9 @@ class ExpencesViewController: UITableViewController {
     @IBAction func showAction(_ sender: UIBarButtonItem) {
         isEditingExp = false
         expenceLabel.text = "Add Expense"
+        nameText.text = ""
+        amountText.text = ""
+        
         animateIn(desiredView: blurView)
         animateIn(desiredView: popoverView)
         
@@ -46,9 +50,11 @@ class ExpencesViewController: UITableViewController {
     @IBAction func saveAction(_ sender: UIButton) {
         
         let newItem = Item(context: self.context)
+        newItem.name = nameText.text!
         newItem.amount = amountText.text!
         newItem.notes = notesText.text!
         newItem.date = selectedDate.date
+        
         
         if addToCalendar.isOn == true {
             newItem.added = true
@@ -133,17 +139,37 @@ class ExpencesViewController: UITableViewController {
         return itemArray.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
+   /* override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell", for: indexPath)
         
         let item = itemArray[indexPath.row]
-        cell.textLabel?.text = item.amount
-        
+               cell.textLabel?.text = item.amount
+               
         //ternary operator
         cell.accessoryType = item.due ? .checkmark : .none
         
         return cell
+    }*/
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell") as! ExpenseTVC
+        cell.expName.text = self.itemArray[indexPath.row].name
+        cell.expAmount.text = self.itemArray[indexPath.row].amount
+        if self.itemArray[indexPath.row].added == true {
+            cell.expRemainder.text = "remainder set"
+        } else {
+            cell.expRemainder.text = " "
+        }
+        
+
+        return cell
+        
     }
     
     
@@ -167,6 +193,7 @@ class ExpencesViewController: UITableViewController {
             self.animateIn(desiredView: self.blurView)
             self.animateIn(desiredView: self.popoverView)
             
+            self.nameText.text = self.itemArray[indexPath.row].name
             self.amountText.text = self.itemArray[indexPath.row].amount
             self.notesText.text = self.itemArray[indexPath.row].notes
             //self.selectedDate.date = self.itemArray[indexPath.row].date
