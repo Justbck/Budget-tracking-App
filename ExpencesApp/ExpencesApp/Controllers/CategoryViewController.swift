@@ -22,7 +22,7 @@ class CategoryViewController: UITableViewController {
  
     
     var colorPicker = UIColorPickerViewController()
-    var selectedColor =  UIColor.systemTeal
+    var selectedColor =  UIColor.white
     
     var isEditingCat: Bool!
     var selectedCatRow :Int!
@@ -128,14 +128,21 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 200
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTVC
         cell.catNameLabel.text = self.categories[indexPath.row].name
-        cell.catBudgetLabel.text = self.categories[indexPath.row].budget
+        let budget = self.categories[indexPath.row].budget! + "£"
+        if (self.categories[indexPath.row].budget!.isEmpty) {
+            cell.catBudgetLabel.text = "0 £"
+        } else{
+            cell.catBudgetLabel.text = budget
+        }
+        
+       
         cell.catNotesLabel.text = self.categories[indexPath.row].notes
         cell.categoryView.frame.size.width = screenSize.width * 0.95
         cell.categoryView.backgroundColor = selectedColor
@@ -212,8 +219,8 @@ class CategoryViewController: UITableViewController {
         
         let request : NSFetchRequest<Category> = Category.fetchRequest()
     
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector:  #selector(NSString.caseInsensitiveCompare(_:)) )]
+     
         loadCategories(with: request)
         tableView.reloadData()
          
@@ -248,7 +255,7 @@ extension CategoryViewController: UISearchBarDelegate {
         let request : NSFetchRequest<Category> = Category.fetchRequest()
     
         let predicate = NSPredicate(format: "name CONTAINS %@", searchBar.text!.lowercased())
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector:  #selector(NSString.caseInsensitiveCompare(_:)))]
         
         loadCategories(with: request, predicate: predicate)
         tableView.reloadData()

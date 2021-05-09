@@ -10,8 +10,8 @@
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
         <attribute name="added" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="amount" optional="YES" attributeType="String"/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="amount" attributeType="String" defaultValueString="0"/>
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="642248820" usesScalarValueType="NO"/>
         <attribute name="due" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>

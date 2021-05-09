@@ -56,11 +56,14 @@ class ExpencesViewController: UITableViewController {
         newItem.date = selectedDate.date
         
         
+        
+        
         if addToCalendar.isOn == true {
             newItem.added = true
         } else {
             newItem.added = false
         }
+        
 
         newItem.due = false
         newItem.parentCategory = self.selectedCategory
@@ -143,24 +146,20 @@ class ExpencesViewController: UITableViewController {
         return 130
     }
     
-   /* override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell", for: indexPath)
-        
-        let item = itemArray[indexPath.row]
-               cell.textLabel?.text = item.amount
-               
-        //ternary operator
-        cell.accessoryType = item.due ? .checkmark : .none
-        
-        return cell
-    }*/
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExpenceItemCell") as! ExpenseTVC
         cell.expName.text = self.itemArray[indexPath.row].name
         cell.expAmount.text = self.itemArray[indexPath.row].amount
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        
+        cell.expDue.text = self.itemArray[indexPath.row].date?.asString()
+        
+        
         if self.itemArray[indexPath.row].added == true {
             cell.expRemainder.text = "remainder set"
         } else {
@@ -225,7 +224,7 @@ class ExpencesViewController: UITableViewController {
         
         let request : NSFetchRequest<Item> = Item.fetchRequest()
     
-        request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector:  #selector(NSString.caseInsensitiveCompare(_:)))]
         
         loadItems(with: request)
         tableView.reloadData()
@@ -271,8 +270,8 @@ extension ExpencesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let request : NSFetchRequest<Item> = Item.fetchRequest()
     
-        let predicate = NSPredicate(format: "amount CONTAINS %@", searchBar.text!.lowercased())
-        request.sortDescriptors = [NSSortDescriptor(key: "amount", ascending: true)]
+        let predicate = NSPredicate(format: "name CONTAINS %@",searchBar.text!.lowercased())
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true, selector:  #selector(NSString.caseInsensitiveCompare(_:)))]
         
         loadItems(with: request, predicate: predicate)
         tableView.reloadData()
@@ -288,4 +287,6 @@ extension ExpencesViewController: UISearchBarDelegate {
         }
     }
 }
+
+
 

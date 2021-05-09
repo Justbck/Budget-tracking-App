@@ -11,6 +11,7 @@
 		831AB46B2647DA4500B01428 /* ExpenseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831AB46A2647DA4500B01428 /* ExpenseTVC.swift */; };
 		832282642642D7B500DD0D6A /* EditExpence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282632642D7B500DD0D6A /* EditExpence.swift */; };
 		832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282662642DDCE00DD0D6A /* AddCategory.swift */; };
+		8331DC22264800670022CDAE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331DC21264800670022CDAE /* DateExtension.swift */; };
 		834099D32643D8F100529981 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 834099D22643D8F100529981 /* SwiftUICharts */; };
 		834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */; };
 		83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AD2B263D866E005DE642 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		831AB46A2647DA4500B01428 /* ExpenseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTVC.swift; sourceTree = "<group>"; };
 		832282632642D7B500DD0D6A /* EditExpence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpence.swift; sourceTree = "<group>"; };
 		832282662642DDCE00DD0D6A /* AddCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategory.swift; sourceTree = "<group>"; };
+		8331DC21264800670022CDAE /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		83A4AD28263D866E005DE642 /* ExpencesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpencesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A4AD2B263D866E005DE642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8331DC24264802290022CDAE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8331DC21264800670022CDAE /* DateExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8334D4F2263EF8EE005D2040 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 				8334D4F6263EF93C005D2040 /* Supporting Files */,
 				83A4AD39263D866F005DE642 /* Info.plist */,
 				83EF4C812641F17F00825AD4 /* Cells */,
+				8331DC24264802290022CDAE /* Extensions */,
 			);
 			path = ExpencesApp;
 			sourceTree = "<group>";
@@ -217,6 +228,7 @@
 				83EF719F2642943D007074CE /* TitleSubCell.swift in Sources */,
 				830A753A264685C600C70154 /* CategoryTVC.swift in Sources */,
 				834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */,
+				8331DC22264800670022CDAE /* DateExtension.swift in Sources */,
 				83F1921B263F1C970008658A /* DataModel.xcdatamodeld in Sources */,
 				832282642642D7B500DD0D6A /* EditExpence.swift in Sources */,
 				83A4AD30263D866E005DE642 /* ExpencesViewController.swift in Sources */,
