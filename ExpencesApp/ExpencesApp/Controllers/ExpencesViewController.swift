@@ -8,9 +8,16 @@
 import UIKit
 import CoreData
 import SwiftUICharts
+import EventKitUI
+import EventKit
 
-
-class ExpencesViewController: UITableViewController {
+class ExpencesViewController: UITableViewController, EKEventViewDelegate {
+    func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
+        
+    }
+    
+    let store = EKEventStore()
+    
     
     
     @IBOutlet weak var expenceLabel: UILabel!
@@ -22,9 +29,6 @@ class ExpencesViewController: UITableViewController {
     @IBOutlet weak var addToCalendar: UISwitch!
     @IBOutlet weak var occurance: UISegmentedControl!
     
-    
-    
-    
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var popoverView: UIView!
   
@@ -33,18 +37,51 @@ class ExpencesViewController: UITableViewController {
     var selectedExpRow :Int!
     
     
+    @objc func didTapSwitch(sender: UISwitch){
+        
+        store.requestAccess(to: .event) { [weak self ] success, error in
+            if success, error == nil {
+                DispatchQueue.main.async {
+                    
+                  
+                    
+                    guard let store = self?.store else { return }
+                    let newEvent = EKEvent(eventStore: store)
+                    newEvent.title = "Add Expense Reminder"
+                    newEvent.startDate =  self!.selectedDate.date
+                    newEvent.endDate =  self!.selectedDate.date
+                    
+                    
+                    
+                    
+                    
+                    let calendarVC = EKEventViewController()
+                    calendarVC.delegate = self
+                    calendarVC.event = newEvent
+                    let navVC = UINavigationController(rootViewController: calendarVC)
+                    self?.present(navVC, animated: true)
+                }
+            }
+        }
+        
+       
+    }
+    
+    
     
     @IBAction func showAction(_ sender: UIBarButtonItem) {
         isEditingExp = false
         expenceLabel.text = "Add Expense"
         nameText.text = ""
         amountText.text = ""
-        
+        selectedDate.date = Date()
+        addToCalendar.isOn = false
+        addToCalendar.addTarget(self, action:  #selector (self.didTapSwitch), for: .valueChanged)
         animateIn(desiredView: blurView)
         animateIn(desiredView: popoverView)
-        
-        
     }
+    
+    
     
     
     @IBAction func saveAction(_ sender: UIButton) {
@@ -62,6 +99,9 @@ class ExpencesViewController: UITableViewController {
         
         if addToCalendar.isOn == true {
             newItem.added = true
+            
+            
+            
         } else {
             newItem.added = false
         }
@@ -113,6 +153,7 @@ class ExpencesViewController: UITableViewController {
         super.viewDidLoad()
         blurView.bounds = self.view.bounds
         popoverView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width * 0.4, height: self.view.bounds.height * 0.4 )
+       
     }
     
     func animateIn(desiredView: UIView) {
