@@ -57,14 +57,14 @@ class CategoryViewController: UITableViewController {
         let newCategory =  Category(context: self.context)
         newCategory.name = categoryName.text!
         newCategory.budget = categoryBudget.text!
+        let budgetDbl = (categoryBudget.text! as NSString).doubleValue
+        newCategory.budgetDbl = budgetDbl
         newCategory.notes = categoryNotes.text!
+        
         let selectedCategoryColor = categoryColor.selectedSegmentIndex
         newCategory.colour = categoryColor.titleForSegment(at:selectedCategoryColor)
         
-       
-        
 
-        
         if isEditingCat == false {
             self.categories.append(newCategory)
             self.saveCategories()
@@ -139,8 +139,11 @@ class CategoryViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTVC
         cell.catNameLabel.text = self.categories[indexPath.row].name
-        let budget = self.categories[indexPath.row].budget! + "£"
-        if (self.categories[indexPath.row].budget!.isEmpty) {
+        let budget = self.categories[indexPath.row].budget! + " £"
+        //let budgetString = String(format: "%f", budget)
+        
+        
+        if (self.categories[indexPath.row].budget?.isEmpty == true) {
             cell.catBudgetLabel.text = "0 £"
         } else{
             cell.catBudgetLabel.text = budget
@@ -191,7 +194,9 @@ class CategoryViewController: UITableViewController {
             self.animateIn(desiredView: self.popoverView)
             
             self.categoryName.text = self.categories[indexPath.row].name
-            self.categoryBudget.text = self.categories[indexPath.row].budget
+            let budget = self.categories[indexPath.row].budget
+            //let budgetString = String(format: "%f", budget)
+            self.categoryBudget.text = budget
             self.categoryNotes.text = self.categories[indexPath.row].notes
  
            

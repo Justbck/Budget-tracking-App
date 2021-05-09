@@ -251,7 +251,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4io-BN-3e4">
-                                                    <rect key="frame" x="527" y="1" width="218" height="130"/>
+                                                    <rect key="frame" x="459" y="1" width="218" height="130"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -259,6 +259,13 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D91-Qh-HgD">
                                                     <rect key="frame" x="342" y="1" width="156" height="130"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xq-qB-8cC">
+                                                    <rect key="frame" x="566" y="27" width="94" height="76"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -274,6 +281,7 @@
                                     <outlet property="expDue" destination="D91-Qh-HgD" id="AKj-66-fiZ"/>
                                     <outlet property="expName" destination="m38-k8-PnH" id="4sx-0o-TM6"/>
                                     <outlet property="expOccurance" destination="qJ0-hA-R6O" id="2O9-TR-XYK"/>
+                                    <outlet property="expPart" destination="8xq-qB-8cC" id="KkN-OF-LLe"/>
                                     <outlet property="expRemainder" destination="4io-BN-3e4" id="hBA-cb-Fm2"/>
                                 </connections>
                             </tableViewCell>

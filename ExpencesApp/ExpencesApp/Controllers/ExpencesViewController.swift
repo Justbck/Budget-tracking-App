@@ -13,7 +13,14 @@ import EventKit
 
 class ExpencesViewController: UITableViewController, EKEventViewDelegate {
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
-        
+        controller.dismiss(animated: true, completion: nil)
+        if controller.isBeingDismissed == true {
+            self.addToCalendar.isOn = false
+        }
+    }
+    
+    func eventViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     let store = EKEventStore()
@@ -39,35 +46,53 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
     
     @objc func didTapSwitch(sender: UISwitch){
         
+   
         store.requestAccess(to: .event) { [weak self ] success, error in
             if success, error == nil {
                 DispatchQueue.main.async {
-                    
-                  
-                    
                     guard let store = self?.store else { return }
                     let newEvent = EKEvent(eventStore: store)
-                    newEvent.title = "Add Expense Reminder"
+                    newEvent.title = self!.nameText.text
                     newEvent.startDate =  self!.selectedDate.date
                     newEvent.endDate =  self!.selectedDate.date
-                    
-                    
-                    
                     
                     
                     let calendarVC = EKEventViewController()
                     calendarVC.delegate = self
                     calendarVC.event = newEvent
                     let navVC = UINavigationController(rootViewController: calendarVC)
+                    
                     self?.present(navVC, animated: true)
+                }
+                }
+        }
+    }
+    
+    @objc func didTapSwitchEdit(sender: UISwitch){
+        
+        store.requestAccess(to: .event) { [weak self ] success, error in
+            if success, error == nil {
+                DispatchQueue.main.async {
+                    guard let store = self?.store else { return }
+                    let newEvent = EKEvent(eventStore: store)
+                    newEvent.title = self!.nameText.text
+                    newEvent.startDate =  self!.selectedDate.date
+                    newEvent.endDate =  self!.selectedDate.date
+                    
+                    
+                   let editVC = EKEventEditViewController()
+                    editVC.eventStore = store
+                    editVC.event = newEvent
+                  
+                    
+                    self?.present(editVC, animated: true, completion: nil)
                 }
             }
         }
         
-       
+        
     }
-    
-    
+ 
     
     @IBAction func showAction(_ sender: UIBarButtonItem) {
         isEditingExp = false
@@ -88,25 +113,27 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
         
         let selectedSegment = occurance.selectedSegmentIndex
         
+        
         let newItem = Item(context: self.context)
         newItem.name = nameText.text!
         newItem.amount = amountText.text!
+        let amountDbl = (amountText.text! as NSString).doubleValue
+        newItem.amountDbl = amountDbl
+        
+        selectedCategory?.totalExpences = selectedCategory!.totalExpences + newItem.amountDbl
+        
         newItem.notes = notesText.text!
         newItem.date = selectedDate.date
         newItem.occurance = occurance.titleForSegment(at:selectedSegment)
-        
-        
+       
         
         if addToCalendar.isOn == true {
             newItem.added = true
-            
-            
-            
+
         } else {
             newItem.added = false
         }
-        
-
+    
         newItem.due = false
         newItem.parentCategory = self.selectedCategory
 
@@ -153,6 +180,11 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
         super.viewDidLoad()
         blurView.bounds = self.view.bounds
         popoverView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width * 0.4, height: self.view.bounds.height * 0.4 )
+        
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height * 0.3))
+        header.backgroundColor = .gray
+        
+        tableView.tableHeaderView = header
        
     }
     
@@ -203,6 +235,9 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
             cell.expAmount.text = budget
         }
         cell.expOccurance.text = self.itemArray[indexPath.row].occurance
+        let totalToString = selectedCategory?.totalExpences
+        let totalExp = String(totalToString!)
+        cell.expPart.text = totalExp
         
         
         let dateFormatter = DateFormatter()
@@ -247,12 +282,14 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
             self.amountText.text = self.itemArray[indexPath.row].amount
             self.notesText.text = self.itemArray[indexPath.row].notes
             
-            //self.selectedDate.date = self.itemArray[indexPath.row].date
+      
+            
             
             if self.itemArray[indexPath.row].added == true {
                 self.addToCalendar.isOn = true
             } else {
                 self.addToCalendar.isOn = false
+                self.addToCalendar.addTarget(self, action:  #selector (self.didTapSwitch), for: .valueChanged)
             }
             
             self.isEditingExp = true

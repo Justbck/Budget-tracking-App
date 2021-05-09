@@ -2,15 +2,17 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="budget" optional="YES" attributeType="String"/>
+        <attribute name="budgetDbl" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="colour" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="totalExpences" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="totalExpences" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="parentCategory" inverseEntity="Item"/>
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
         <attribute name="added" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="amount" attributeType="String" defaultValueString="0"/>
+        <attribute name="amountDbl" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="642248820" usesScalarValueType="NO"/>
         <attribute name="due" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
@@ -19,7 +21,7 @@
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category"/>
     </entity>
     <elements>
-        <element name="Category" positionX="4297" positionY="150" width="128" height="133"/>
-        <element name="Item" positionX="4503.5" positionY="152.5" width="128" height="163"/>
+        <element name="Category" positionX="4297" positionY="150" width="128" height="148"/>
+        <element name="Item" positionX="4503.5" positionY="152.5" width="128" height="178"/>
     </elements>
 </model>
