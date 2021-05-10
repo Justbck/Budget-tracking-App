@@ -7,25 +7,29 @@
 
 import UIKit
 import CoreData
-import SwiftUICharts
+import Charts
+import TinyConstraints
 import EventKitUI
 import EventKit
 
-class ExpencesViewController: UITableViewController, EKEventViewDelegate {
+class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartViewDelegate  {
     func eventViewController(_ controller: EKEventViewController, didCompleteWith action: EKEventViewAction) {
         controller.dismiss(animated: true, completion: nil)
         if controller.isBeingDismissed == true {
             self.addToCalendar.isOn = false
         }
     }
+
     
     func eventViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         controller.dismiss(animated: true, completion: nil)
     }
     
     let store = EKEventStore()
-    
-    
+
+    var barChart = BarChartView()
+    var pieChart = PieChartView()
+
     
     @IBOutlet weak var expenceLabel: UILabel!
     
@@ -188,11 +192,38 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate {
         headerView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width, height: self.view.bounds.height * 0.3)
         
         headerTitile.text = selectedCategory?.name
+
+        
+        headerView.addSubview(pieChart)
+        pieChart.centerInSuperview()
+        pieChart.width(to: headerView)
+        pieChart.height(to:headerView)
         
         
+        
+        var entries = [ChartDataEntry]()
+        let expNumber =  self.itemArray.count
+    
+        
+        for x in 0..<expNumber   {
+            entries.append(ChartDataEntry(x : Double(x), y: Double( self.itemArray[x].amountDbl)))
+        }
+        
+        let set = PieChartDataSet(entries:entries)
+        set.colors = ChartColorTemplates.joyful()
+        
+        
+        let data = PieChartData(dataSet: set)
+        pieChart.data = data
+        
+        
+        
+    
         tableView.tableHeaderView = headerView
        
     }
+    
+
     
     func animateIn(desiredView: UIView) {
         let backgroundView = self.view!

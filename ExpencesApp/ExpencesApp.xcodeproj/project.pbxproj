@@ -13,7 +13,6 @@
 		832282672642DDCE00DD0D6A /* AddCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832282662642DDCE00DD0D6A /* AddCategory.swift */; };
 		8331DC22264800670022CDAE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331DC21264800670022CDAE /* DateExtension.swift */; };
 		8331DC2B26481F260022CDAE /* ColorUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8331DC2A26481F260022CDAE /* ColorUIExtension.swift */; };
-		834099D32643D8F100529981 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 834099D22643D8F100529981 /* SwiftUICharts */; };
 		834CAC7E263FFA040093C3C9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834CAC7D263FFA040093C3C9 /* CategoryViewController.swift */; };
 		83A4AD2C263D866E005DE642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AD2B263D866E005DE642 /* AppDelegate.swift */; };
 		83A4AD2E263D866E005DE642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AD2D263D866E005DE642 /* SceneDelegate.swift */; };
@@ -21,6 +20,8 @@
 		83A4AD33263D866E005DE642 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD31263D866E005DE642 /* Main.storyboard */; };
 		83A4AD35263D866F005DE642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD34263D866F005DE642 /* Assets.xcassets */; };
 		83A4AD38263D866F005DE642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A4AD36263D866F005DE642 /* LaunchScreen.storyboard */; };
+		83DD559426491D7400BF14CC /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 83DD559326491D7400BF14CC /* Charts */; };
+		83DD5599264920A200BF14CC /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 83DD5598264920A200BF14CC /* TinyConstraints */; };
 		83EF4C7B2641DB8100825AD4 /* EditCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C7A2641DB8100825AD4 /* EditCategory.swift */; };
 		83EF4C7F2641F14600825AD4 /* TextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF4C7E2641F14600825AD4 /* TextfieldCell.swift */; };
 		83EF719F2642943D007074CE /* TitleSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EF719E2642943D007074CE /* TitleSubCell.swift */; };
@@ -54,7 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				834099D32643D8F100529981 /* SwiftUICharts in Frameworks */,
+				83DD559426491D7400BF14CC /* Charts in Frameworks */,
+				83DD5599264920A200BF14CC /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +169,8 @@
 			);
 			name = ExpencesApp;
 			packageProductDependencies = (
-				834099D22643D8F100529981 /* SwiftUICharts */,
+				83DD559326491D7400BF14CC /* Charts */,
+				83DD5598264920A200BF14CC /* TinyConstraints */,
 			);
 			productName = ExpencesApp;
 			productReference = 83A4AD28263D866E005DE642 /* ExpencesApp.app */;
@@ -197,7 +200,8 @@
 			);
 			mainGroup = 83A4AD1F263D866E005DE642;
 			packageReferences = (
-				834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */,
+				83DD559226491D7400BF14CC /* XCRemoteSwiftPackageReference "Charts" */,
+				83DD5597264920A200BF14CC /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 			);
 			productRefGroup = 83A4AD29263D866E005DE642 /* Products */;
 			projectDirPath = "";
@@ -441,21 +445,34 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+		83DD559226491D7400BF14CC /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
+			repositoryURL = "https://github.com/danielgindi/Charts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.5;
+				minimumVersion = 4.0.1;
+			};
+		};
+		83DD5597264920A200BF14CC /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		834099D22643D8F100529981 /* SwiftUICharts */ = {
+		83DD559326491D7400BF14CC /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 834099D12643D8F100529981 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
+			package = 83DD559226491D7400BF14CC /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+		83DD5598264920A200BF14CC /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83DD5597264920A200BF14CC /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
 		};
 /* End XCSwiftPackageProductDependency section */
 
