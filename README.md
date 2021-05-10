@@ -1,4 +1,4 @@
-# Expences-Management-App
+# Expenses-Management-App
 
 ![184309403_805814867024848_2753470893081451439_n (1)](https://user-images.githubusercontent.com/62395299/117721720-1ea34180-b1d8-11eb-87fb-4722a9bf1404.jpg)
 ![183746733_2929794250616742_6405328093771328310_n (1)](https://user-images.githubusercontent.com/62395299/117721723-1fd46e80-b1d8-11eb-9834-c4f42d2d7785.jpg)
