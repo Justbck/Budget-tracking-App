@@ -54,18 +54,19 @@ class CategoryViewController: UITableViewController {
     
     @IBAction func saveAction(_ sender: UIButton) {
         
-        let newCategory =  Category(context: self.context)
-        newCategory.name = categoryName.text!
-        newCategory.budget = categoryBudget.text!
-        let budgetDbl = (categoryBudget.text! as NSString).doubleValue
-        newCategory.budgetDbl = budgetDbl
-        newCategory.notes = categoryNotes.text!
-        
-        let selectedCategoryColor = categoryColor.selectedSegmentIndex
-        newCategory.colour = categoryColor.titleForSegment(at:selectedCategoryColor)
+      
         
 
         if isEditingCat == false {
+            let newCategory =  Category(context: self.context)
+            newCategory.name = categoryName.text!
+            newCategory.budget = categoryBudget.text!
+            let budgetDbl = (categoryBudget.text! as NSString).doubleValue
+            newCategory.budgetDbl = budgetDbl
+            newCategory.notes = categoryNotes.text!
+            
+            let selectedCategoryColor = categoryColor.selectedSegmentIndex
+            newCategory.colour = categoryColor.titleForSegment(at:selectedCategoryColor)
             self.categories.append(newCategory)
             self.saveCategories()
             animateOut(desiredView: popoverView)
@@ -73,10 +74,7 @@ class CategoryViewController: UITableViewController {
             
         } else {
             
-            //self.categories.insert(newCategory, at: selectedCatRow + 1)
-            //self.context.delete(self.categories[selectedCatRow])
-            //self.categories.remove(at: selectedCatRow)
-            
+    
             self.categories[selectedCatRow].name =   categoryName.text!
             self.categories[selectedCatRow].budget = categoryBudget.text!
             let budgetDbl = (categoryBudget.text! as NSString).doubleValue
@@ -87,6 +85,9 @@ class CategoryViewController: UITableViewController {
             
             
             self.saveCategories()
+            //self.categories.insert(newCategory, at: selectedCatRow + 1)
+            //self.context.delete(self.categories[selectedCatRow - 1])
+            //self.categories.remove(at: selectedCatRow)
             animateOut(desiredView: popoverView)
             animateOut(desiredView: blurView)
         }
