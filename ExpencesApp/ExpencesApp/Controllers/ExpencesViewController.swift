@@ -197,7 +197,7 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         headerView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width, height: self.view.bounds.height * 0.3)
         
         headerTitile.text = selectedCategory?.name
-      
+        
         self.updateCategoryDetails()
         self.updateTableHeader()
         
@@ -236,6 +236,8 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         
         self.remainingLabel.text = remainingNumberString
         
+  
+
     }
     
     
@@ -271,10 +273,9 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         
         let set = PieChartDataSet(entries:entries)
         set.colors = ChartColorTemplates.joyful()
-               
         let data = PieChartData(dataSet: set)
         pieChart.data = data
-    
+      
         tableView.tableHeaderView = headerView
     }
 
@@ -326,9 +327,7 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
             cell.expAmount.text = budget
         }
         cell.expOccurance.text = self.itemArray[indexPath.row].occurance
-        //let totalToString = selectedCategory?.totalExpences
-        //let totalExp = String(totalToString!)
-        
+
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .medium
@@ -341,7 +340,26 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         } else {
             cell.expRemainder.text = " "
         }
-            
+        
+        //balance is 100% = 165 width
+        //amout double is (amount * 100/balance)% = x width
+        let balanceFloat =
+            Float(self.selectedCategory!.budgetDbl)
+        let expenseFloat = Float(self.itemArray[indexPath.row].amountDbl)
+        
+        let amountPercentage = Float((expenseFloat * 100) / balanceFloat)
+        
+        let amountWidth = Float((165 * amountPercentage)/100)
+        
+        
+        if amountWidth > 165 {
+            cell.expPercentage.frame.size.width = CGFloat(165)
+            cell.expPercentage.backgroundColor = UIColor(hex: "ff867c")
+        } else {
+            cell.expPercentage.frame.size.width = CGFloat(amountWidth)
+            cell.expPercentage.backgroundColor = UIColor(hex: "b3e5fc")
+        }
+
         self.updateCategoryDetails()
         self.updateTableHeader()
         return cell

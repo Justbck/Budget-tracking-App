@@ -15,6 +15,7 @@ class ExpenseTVC: UITableViewCell {
     @IBOutlet weak var expOccurance: UILabel!
     @IBOutlet weak var expDue: UILabel!
     @IBOutlet weak var expRemainder: UILabel!
+    @IBOutlet weak var expPercentage: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
