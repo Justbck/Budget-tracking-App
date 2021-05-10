@@ -9,7 +9,7 @@ import UIKit
 
 class ExpenseTVC: UITableViewCell {
 
-    @IBOutlet weak var expPart: UILabel!
+    
     @IBOutlet weak var expName: UILabel!
     @IBOutlet weak var expAmount: UILabel!
     @IBOutlet weak var expOccurance: UILabel!

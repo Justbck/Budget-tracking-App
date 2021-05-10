@@ -27,7 +27,7 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
     
     let store = EKEventStore()
 
-    var barChart = BarChartView()
+    
     var pieChart = PieChartView()
 
     
@@ -45,6 +45,12 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
     
     @IBOutlet var headerView: UIView!
     
+    @IBOutlet var footerView: UIView!
+    
+    
+    @IBOutlet weak var totalBudgetLabel: UILabel!
+    @IBOutlet weak var spentLabel: UILabel!
+    @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var headerTitile: UILabel!
     
    
@@ -91,8 +97,6 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
                    let editVC = EKEventEditViewController()
                     editVC.eventStore = store
                     editVC.event = newEvent
-                  
-                    
                     self?.present(editVC, animated: true, completion: nil)
                 }
             }
@@ -160,6 +164,7 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
             animateOut(desiredView: popoverView)
             animateOut(desiredView: blurView)
         }
+        
     }
     
     @IBAction func cancelAction(_ sender: UIButton) {
@@ -192,19 +197,56 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         headerView.bounds = CGRect(x:0,y:0,width: self.view.bounds.width, height: self.view.bounds.height * 0.3)
         
         headerTitile.text = selectedCategory?.name
-
+        self.updateCategoryDetails()
+        self.updateTableHeader()
         
+    }
+    
+    func updateCategoryDetails(){
+       
+        footerView.frame = CGRect(x: 0, y: 200, width: self.view.bounds.width, height: self.view.bounds.height * 0.2)
+        
+        tableView.tableFooterView = footerView
+        
+        if self.selectedCategory?.budget?.isEmpty == true {
+            let budgetTotal = "0 £"
+            self.totalBudgetLabel.text = budgetTotal
+        } else {
+            let budgetTotal = self.selectedCategory!.budget! + " £"
+            self.totalBudgetLabel.text = budgetTotal
+        }
+        
+        let expNumber =  self.itemArray.count
+        var spentTotal: Double = 0.0
+        
+    
+        for x in 0..<expNumber   {
+            spentTotal = spentTotal + Double(self.itemArray[x].amountDbl)
+        }
+        
+        let spentString = String(spentTotal) + "£"
+        self.spentLabel.text = spentString
+        
+      
+        var remainingNumber: Double = 0.0
+        let bugetDbl = self.selectedCategory!.budgetDbl
+        remainingNumber = Double(bugetDbl - spentTotal)
+        let remainingNumberString = String(remainingNumber) + "£"
+        
+        self.remainingLabel.text = remainingNumberString
+        
+    }
+    
+    
+    func updateTableHeader(){
         headerView.addSubview(pieChart)
         pieChart.centerInSuperview()
         pieChart.width(to: headerView)
         pieChart.height(to:headerView)
-        
-        
-        
+ 
         var entries = [ChartDataEntry]()
         let expNumber =  self.itemArray.count
     
-        
         for x in 0..<expNumber   {
             entries.append(ChartDataEntry(x : Double(x), y: Double( self.itemArray[x].amountDbl)))
         }
@@ -215,14 +257,9 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         
         let data = PieChartData(dataSet: set)
         pieChart.data = data
-        
-        
-        
     
         tableView.tableHeaderView = headerView
-       
     }
-    
 
     
     func animateIn(desiredView: UIView) {
@@ -272,9 +309,8 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
             cell.expAmount.text = budget
         }
         cell.expOccurance.text = self.itemArray[indexPath.row].occurance
-        let totalToString = selectedCategory?.totalExpences
-        let totalExp = String(totalToString!)
-        cell.expPart.text = totalExp
+        //let totalToString = selectedCategory?.totalExpences
+        //let totalExp = String(totalToString!)
         
         
         let dateFormatter = DateFormatter()
@@ -288,8 +324,8 @@ class ExpencesViewController: UITableViewController, EKEventViewDelegate, ChartV
         } else {
             cell.expRemainder.text = " "
         }
-        
-
+            
+        self.updateTableHeader()
         return cell
         
     }
