@@ -85,9 +85,6 @@ class CategoryViewController: UITableViewController {
             
             
             self.saveCategories()
-            //self.categories.insert(newCategory, at: selectedCatRow + 1)
-            //self.context.delete(self.categories[selectedCatRow - 1])
-            //self.categories.remove(at: selectedCatRow)
             animateOut(desiredView: popoverView)
             animateOut(desiredView: blurView)
         }
@@ -151,7 +148,7 @@ class CategoryViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryTVC
         cell.catNameLabel.text = self.categories[indexPath.row].name
         let budget = self.categories[indexPath.row].budget! + " £"
-        //let budgetString = String(format: "%f", budget)
+        
         
         
         if (self.categories[indexPath.row].budget?.isEmpty == true) {
