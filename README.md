@@ -1,5 +1,7 @@
 # Expenses-Management-App
 
+I highly recommend downloading the zip file in order to run the app without any flaws.
+
 ![184309403_805814867024848_2753470893081451439_n (1)](https://user-images.githubusercontent.com/62395299/117721720-1ea34180-b1d8-11eb-87fb-4722a9bf1404.jpg)
 ![183746733_2929794250616742_6405328093771328310_n (1)](https://user-images.githubusercontent.com/62395299/117721723-1fd46e80-b1d8-11eb-9834-c4f42d2d7785.jpg)
 ![184605956_485167262689166_7916046741057303551_n](https://user-images.githubusercontent.com/62395299/117721724-1fd46e80-b1d8-11eb-8f91-9c5635e69a07.jpg)
