@@ -1,4 +1,4 @@
-# Expenses-Management-App
+# Budget tracking app
 
 I highly recommend downloading the zip file in order to run the app without any flaws.
 
